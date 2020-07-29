@@ -1,12 +1,13 @@
 // Node crypto & bufferFrom
 import * as crypto from 'crypto'
 import bufferFrom from 'buffer-from'
-
 import type {TUtils, TB64UrlEncode, TIsVerified, IPayload} from './index.d'
 
 // Utils
 const atob: TUtils = (a = '') => bufferFrom(a, 'base64').toString('binary')
 const base64UrlEncode: TB64UrlEncode = (buffer) => buffer.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '')
+
+
 // is Verified and not expired
 const isVerified: TIsVerified = (authorization: string, secret: string, cb?: Function ) => {
   // Early return for missing params
