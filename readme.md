@@ -7,7 +7,9 @@
 
 This function simply verifies the authenticity and expirey time on an app bridge created JWT header. This is used to verify cookieless sessions between abstracted app frontend and backend. It does not require external dependencies but does require the the node version covers crypto and bufferFrom. We have suggested 10+ and tested as such.
 
-Primary use cases would be in a custom middle ware for your backend routes. Built and tested for usage along side NextJS Api routes, however should translate to all use cases. 
+Designed to be small and dependency free [See bundle size impact on BundlePhobia](https://bundlephobia.com/result?p=shopify-jwt-auth-verify@1.0.6-rc)
+
+Primary use cases would be in a custom middleware for your backend routes. Built and tested for usage along side NextJS Api routes, however should translate to all use cases. 
 
 It will simply return a boolean: `true` let other stuff happen or `false` stop stuff from happening. 
 
