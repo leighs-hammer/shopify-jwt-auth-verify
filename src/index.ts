@@ -1,10 +1,10 @@
 // Node crypto & bufferFrom
+import {Buffer} from 'buffer'
 import * as crypto from 'crypto'
-import * as bufferFrom from 'buffer-from'
 import type {TUtils, TB64UrlEncode, TIsVerified, IPayload} from './index.d'
 
 // Utils
-const atob: TUtils = (a = '') => bufferFrom(a, 'base64').toString('binary')
+const atob: TUtils = (a = '') => Buffer.from(a, 'base64').toString('binary')
 const base64UrlEncode: TB64UrlEncode = (buffer) => buffer.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '')
 
 
