@@ -41,7 +41,8 @@ const valid = isVerified(headerBearer, appSecret)
 
 ### Is verified takes three arguments:
 
-1. *authorization* - REQUIRED - the jwt passed into the header on the request `Bearer b64encObject.b64encObject.hashHmac256`
+1. *authorization* - REQUIRED - the jwt passed into the header on the request 
+`Bearer b64encObject.b64encObject.hashHmac256`
 2. *secret* - REQUIRED -app secret ( partners.shopify.com)
 3. *callback* - OPTIONAL - callback called if is verified and passed an object of the header, payload and signature. 
 
