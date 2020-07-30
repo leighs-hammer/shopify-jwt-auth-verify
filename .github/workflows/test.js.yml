@@ -24,7 +24,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm test
+    - run: npm install
+    - run: npm run test
     - name: Jest Annotations & Coverage
       uses: mattallty/jest-github-action@v1.0.3
       env:
