@@ -1,6 +1,6 @@
 {
   "name": "shopify-jwt-auth-verify",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A single function to be used as a verification for the new JWT app auth, used on the backend to verify FE requests incoming.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "test": "jest --collectCoverage",
     "test:watch": "jest --watchAll"
   },
-  "prepublish": "tsc",
+  "prepublish": "echo 'building!' && npm run build",
   "author": "leighbarnes",
   "license": "MIT",
   "repository": {

@@ -17,6 +17,13 @@ test('a valid request both authenticity & not expired', () => {
   expect(verified).toBe(true)
 })
 
+test('a valid request with a token direct from the session token request ( EG : minus Bearer )', () => {
+  // @ts-ignore
+  const {secret, sessionToken} = createMock()
+  const verified = isVerified(sessionToken, secret)
+  expect(verified).toBe(true)
+})
+
 test('a fradulent request', () => {
   // @ts-ignore
   const {bearer, signature, secret, headerPayload} = createMock(60000, true)
