@@ -11,6 +11,10 @@ Primary use cases would be in a custom middle ware for your backend routes. Buil
 
 It will simply return a boolean: `true` let other stuff happen or `false` stop stuff from happening. 
 
+## NOTE THIS IS IN NO WAY SUPPORTED OR BUILT BY SHOPIFY
+This was built as tooling for my implementations of the cookieless authentication, which is awesome and such a step forward. 
+If you have any issues please raise them on github or ping me ont he partners slack or twitter. 
+
 ## Shopify Documentation
 
 find out more about [Shopify session token authentication](https://shopify.dev/tools/app-bridge/authentication)
