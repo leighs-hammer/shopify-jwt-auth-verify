@@ -20,11 +20,11 @@ find out more about [Shopify session token authentication](https://shopify.dev/t
 ```
 
 // Require or Import
-const isVerified = require('')
+const isVerified = require('shopify-jwt-auth-verify')
 
 // OR
 
-import isVerified from ''
+import isVerified from 'shopify-jwt-auth-verify'
 
 
 // use it by passing it the session token from the header ( or getSessionToken) and App secret
