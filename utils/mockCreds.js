@@ -1,5 +1,5 @@
 const mockCreds = {
-  secret: 123
+  secret: 'IamAString'
 }
 
 module.exports = mockCreds

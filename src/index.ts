@@ -1,6 +1,6 @@
 // Node crypto & bufferFrom
 import * as crypto from 'crypto'
-import bufferFrom from 'buffer-from'
+import * as bufferFrom from 'buffer-from'
 import type {TUtils, TB64UrlEncode, TIsVerified, IPayload} from './index.d'
 
 // Utils
@@ -23,9 +23,11 @@ const isVerified: TIsVerified = (authorization: string, secret: string, cb?: Fun
     payload: atob(auth[1]),
     signature: auth[2],
   }
+  
   const headerPayload: string = [auth[0], auth[1]].join('.')
   const signedBuffer: Buffer = crypto.createHmac('sha256', secret).update(headerPayload).digest()
   const isVerified: boolean = authObject.signature === base64UrlEncode(signedBuffer)
+  
   if(!isVerified) {
     console.error('Token is invalid')
     return false
@@ -34,6 +36,7 @@ const isVerified: TIsVerified = (authorization: string, secret: string, cb?: Fun
   const payload: IPayload = JSON.parse(authObject.payload)
   const time = new Date().getTime() / 1000
   const isExpired: boolean = payload.exp <= time
+
   if(isExpired) {
     console.error('Token is expired')
     return false
