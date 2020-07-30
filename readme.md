@@ -11,6 +11,10 @@ Primary use cases would be in a custom middle ware for your backend routes. Buil
 
 It will simply return a boolean: `true` let other stuff happen or `false` stop stuff from happening. 
 
+## Shopify Documentation
+
+find out more about [Shopify session token authentication](https://shopify.dev/tools/app-bridge/authentication)
+
 ## TL;DR Example
 
 ```
@@ -51,11 +55,7 @@ This function has types supplied and was written in typescript if that is of int
 ### IsVerified takes three arguments:
 
 1. **authorization** - REQUIRED - the jwt passed into the header on the request 
-
-`Bearer b64encObject.b64encObject.hashHmac256`
-
 2. **secret** - REQUIRED -app secret ( partners.shopify.com)
-
 3. **callback** - OPTIONAL - callback called if is verified and passed an object of the header, payload and signature. 
 
 The call back is there if needed, but serves little purpose unless you need to extend or assert agains the function. 
