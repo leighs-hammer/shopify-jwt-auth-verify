@@ -1,6 +1,6 @@
 {
   "name": "shopify-jwt-auth-verify",
-  "version": "1.0.6-rc2",
+  "version": "1.0.7",
   "description": "A single function to be used as a verification for the new JWT app auth, used on the backend to verify FE requests incoming.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
