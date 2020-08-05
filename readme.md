@@ -26,7 +26,7 @@ find out more about [Shopify session token authentication](https://shopify.dev/t
 ```
 
 // Require or Import
-const isVerified = require('shopify-jwt-auth-verify')
+const isVerified = require("shopify-jwt-auth-verify")['default']
 
 // OR
 
