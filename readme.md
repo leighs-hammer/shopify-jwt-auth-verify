@@ -5,7 +5,7 @@
 [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
 
 
-This function simply verifies the authenticity and expirey time on an app bridge created JWT header. This is used to verify cookieless sessions between abstracted app frontend and backend. It does not require external dependencies but does require the the node version covers crypto and bufferFrom. We have suggested 10+ and tested as such.
+This function simply verifies the authenticity and expiry time on an app bridge created JWT header. This is used to verify cookieless sessions between abstracted app frontend and backend. It does not require external dependencies but does require the the node version covers crypto and bufferFrom. We have suggested 10+ and tested as such.
 
 Designed to be small and dependency free [See bundle size impact on BundlePhobia](https://bundlephobia.com/result?p=shopify-jwt-auth-verify@1.0.6-rc)
 
