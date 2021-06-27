@@ -15,12 +15,12 @@ const createMock = (offset = 60000, invalid = false) => {
   }
   
   const mockPayload = {
-    iss: "string",
-    dest: "string",
-    aud: "string",
+    iss: "https://some.myshopify.com",
+    dest: "https://some.myshopify.com",
+    aud: mockCreds.key,
     sub: "string",
     exp: time+offset,
-    nbf: "number",
+    nbf: time-offset,
     iat: "number",
     jti: "string", 
   }
@@ -33,6 +33,7 @@ const createMock = (offset = 60000, invalid = false) => {
 
   return {
     secret: mockCreds.secret,
+    key: mockCreds.key,
     bearer: builtAuth,
     signature,
     encodedSignature: base64UrlEncode(signature),

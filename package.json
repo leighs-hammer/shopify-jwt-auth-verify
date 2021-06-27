@@ -17,7 +17,7 @@
     "url": "https://github.com/leighs-hammer/shopify-jwt-auth-verify"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.7",
+    "@types/jest": "^26.0.23",
     "jest": "^26.1.0",
     "ts-jest": "^26.1.4",
     "typescript": "^3.9.7"
