@@ -7,7 +7,7 @@
 
 This function simply verifies the authenticity and expiry time on an app bridge created JWT header. This is used to verify cookieless sessions between abstracted app frontend and backend. It does not require external dependencies but does require the the node version covers crypto and bufferFrom. We have suggested 10+ and tested as such.
 
-Designed to be small and dependency free [See bundle size impact on BundlePhobia](https://bundlephobia.com/result?p=shopify-jwt-auth-verify@1.0.6-rc)
+Designed to be small and dependency free [See bundle size impact on BundlePhobia](https://bundlephobia.com/result?p=shopify-jwt-auth-verify)
 
 Primary use cases would be in a custom middleware for your backend routes. Built and tested for usage along side NextJS Api routes, however should translate to all use cases. 
 
@@ -34,7 +34,7 @@ import isVerified from 'shopify-jwt-auth-verify'
 
 
 // use it by passing it the session token from the header ( or getSessionToken) and App secret
-const valid = isVerified(headerBearer, appSecret)
+const valid = isVerified(headerBearer, appSecret, appKey)
 ```
 
 ## Typescript
@@ -50,6 +50,8 @@ This function has types supplied and was written in typescript if that is of int
 - 10+
 - 12+
 - 14+
+- 15+
+- 16+
 
 
 # API
@@ -58,11 +60,13 @@ This function has types supplied and was written in typescript if that is of int
 
 `const isVerified = (authorization: string, secret: string, cb?: Function ) => boolean`
 
-### IsVerified takes three arguments:
+### IsVerified takes three required parmeters, and two optional parameters
 
 1. **authorization** - REQUIRED - the jwt passed into the header on the request 
-2. **secret** - REQUIRED -app secret ( partners.shopify.com)
-3. **callback** - OPTIONAL - callback called if is verified and passed an object of the header, payload and signature. 
+2. **secret** - REQUIRED - app secret ( partners.shopify.com)
+3. **key** - REQUIRED - app key (partners.shopify.com)
+4. **callback** - OPTIONAL - callback called if is verified and passed an object of the header, payload and signature. 
+5. **returnCallback** - OPTIONAL - a boolean that if tru will chance the return of callback function, to allow chaining.
 
 The call back is there if needed, but serves little purpose unless you need to extend or assert agains the function. 
 
@@ -91,7 +95,7 @@ const jwtVerifiedConnection = (handler) => {
       res.status(403).json({message: 'No bearer supplied, are you using the correct fetch method'})
     }
     
-    const verified = isVerified(req.headers.authorization, process.env.SHOPIFY_APP_SECRET)
+    const verified = isVerified(req.headers.authorization, process.env.SHOPIFY_APP_SECRET, process.env.SHOPIFY_APP_KEY)
     
     if(!verified) {
       res.status(401).json({message: 'JWT is invalid.'})
