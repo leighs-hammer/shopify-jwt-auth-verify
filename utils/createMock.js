@@ -27,17 +27,21 @@ const createMock = (offset = 60000, invalid = false) => {
 
 
   const headerPayload = [btoa(`${JSON.stringify(mockHeader)}`), btoa(JSON.stringify(mockPayload))].join('.')
+  const expiredPayload = [btoa(`${JSON.stringify(mockHeader)}`), btoa(JSON.stringify(Object.assign({}, {...mockPayload}, {nbf: "fail"})))].join('.')
   const signature = crypto.createHmac('sha256', mockCreds.secret).update(headerPayload).digest()
   const builtAuth = `Bearer ${invalid ? "dfghh": ""}${headerPayload}.${base64UrlEncode(signature)}`
+  const builtExpiredAuth = `Bearer ${invalid ? "dfghh": ""}${expiredPayload}.${base64UrlEncode(signature)}`
   const sessionToken = `${headerPayload}.${base64UrlEncode(signature)}`
 
   return {
     secret: mockCreds.secret,
     key: mockCreds.key,
     bearer: builtAuth,
+    expiredBearer: expiredPayload,
     signature,
     encodedSignature: base64UrlEncode(signature),
     headerPayload,
+    expiredPayload,
     mockHeader,
     mockPayload,
     sessionToken,

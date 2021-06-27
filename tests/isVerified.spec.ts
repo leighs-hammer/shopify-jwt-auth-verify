@@ -17,6 +17,13 @@ test('a valid request both authenticity & not expired', () => {
   expect(verified).toBe(true)
 })
 
+test('Test expired or incorrect tbf', () => {
+  // @ts-ignore
+  const {builtExpiredAuth, signature, secret, key,} = createMock()
+  const verified = isVerified(builtExpiredAuth, secret, key)
+  expect(verified).toBe(false)
+})
+
 test('a valid request with a token direct from the session token request ( EG : minus Bearer )', () => {
   // @ts-ignore
   const {secret, sessionToken, key} = createMock()
