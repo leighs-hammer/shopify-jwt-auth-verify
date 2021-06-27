@@ -60,6 +60,6 @@ test('The call back is called', () => {
 test('The callback results are returned', () => {
   const {bearer, encodedSignature, secret, key, headerPayload, mockHeader, mockPayload} = createMock()
   const iterableCallback = (...any) => Object.assign({}, {...any[0]}, {...any[1]}, {callback:true})
-  const verified = isVerified(bearer, secret, key, iterableCallback, true)
+  const verified: any = isVerified(bearer, secret, key, iterableCallback, true)
   expect(verified.callback).toBe(true)
 })
