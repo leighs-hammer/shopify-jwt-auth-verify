@@ -1,4 +1,4 @@
-export type TIsVerified = (authorization: string, secret: string, callback?: Function) => boolean
+export type TIsVerified = (authorization: string, secret: string, key: string, callback?: Function, returnCallback?: boolean) => boolean | Record<string, unknown>
 export type TUtils = (a: string) => string
 export type TB64UrlEncode = (a: Buffer) => string
 export interface IPayload{

@@ -1,5 +1,6 @@
 // Node crypto & bufferFrom
 import {Buffer} from 'buffer'
+import {URL} from 'url'
 import * as crypto from 'crypto'
 import type {TUtils, TB64UrlEncode, TIsVerified, IPayload} from './index.d'
 
@@ -9,10 +10,10 @@ const base64UrlEncode: TB64UrlEncode = (buffer) => buffer.toString('base64').rep
 
 
 // is Verified and not expired
-const isVerified: TIsVerified = (authorization: string, secret: string, cb?: Function ) => {
+const isVerified: TIsVerified = (authorization: string, secret: string, key: string,  cb?: Function, returnCallback?: boolean ) => {
   // Early return for missing params
-  if(!authorization || !secret) { 
-    console.error('authorization or app secret missing')
+  if(!authorization || !secret || !key) { 
+    console.error('authorization or app secret or app key missing')
     return false
   }
   // probably could be cleaned up this is dirty, straight string replace to remove the stragglers and split it. 
@@ -36,16 +37,38 @@ const isVerified: TIsVerified = (authorization: string, secret: string, cb?: Fun
   const payload: IPayload = JSON.parse(authObject.payload)
   const time = new Date().getTime() / 1000
   const isExpired: boolean = payload.exp <= time
+  const isValidAfter: boolean = payload.nbf <= time
+  const iss = new URL(payload.iss).hostname;
+  const dest = new URL(payload.dest).hostname;
 
+  // still valid
   if(isExpired) {
     console.error('Token is expired')
     return false
   }
-  // call the optional callback with the authObject
-  if(cb) {
-    cb(authObject)
+
+  // valid from
+  if(!isValidAfter) {
+    console.error('Token is not yet valid');
+    return false
   }
-  // return valid
-  return true
+
+  if(iss != dest) {
+    console.error(`Token issuer ${iss} does not match the destination ${dest}`);
+    return false
+  }
+
+  if(payload.aud != key) {
+      console.error('Token does not match the Shopify API Key');
+      return false
+  }
+
+  // call the optional callback with the authObject
+  if(cb && !returnCallback) {
+    // in chain call back, 
+    cb(authObject, payload)
+  }
+  // return valid or a callback if specified by returnCallback
+  return !returnCallback ? true : cb(authObject, payload)
 }
 export default isVerified
