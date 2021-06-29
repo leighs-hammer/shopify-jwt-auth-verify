@@ -4,6 +4,11 @@
 ![Test & Cover](https://github.com/leighs-hammer/shopify-jwt-auth-verify/workflows/Test%20&%20Cover/badge.svg)
 [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
 
+----
+## BREAKING CHANGES IN V2.0
+The function now requires the app key to be passed along with the app secret please see the re shuffle in parameter order to facilitate this. It should be a small change. 
+----
+
 
 This function simply verifies the authenticity and expiry time on an app bridge created JWT header. This is used to verify cookieless sessions between abstracted app frontend and backend. It does not require external dependencies but does require the the node version covers crypto and bufferFrom. We have suggested 10+ and tested as such.
 
