@@ -98,7 +98,7 @@ const jwtVerifiedConnection = (handler) => {
     const verified = isVerified(req.headers.authorization, process.env.SHOPIFY_APP_SECRET, process.env.SHOPIFY_APP_KEY)
     
     if(!verified) {
-      res.status(401).json({message: 'JWT is invalid.'})
+      return res.status(401).json({message: 'JWT is invalid.'})
     }
     
     // continue on to the route requested. 
