@@ -2,7 +2,7 @@
 import {Buffer} from 'buffer'
 import {URL} from 'url'
 import * as crypto from 'crypto'
-import type {TUtils, TB64UrlEncode, TIsVerified, IPayload} from './index.d'
+import type {TUtils, TB64UrlEncode, TIsVerified, IPayload} from './index.types'
 
 // Utils
 const atob: TUtils = (a = '') => Buffer.from(a, 'base64').toString('binary')
